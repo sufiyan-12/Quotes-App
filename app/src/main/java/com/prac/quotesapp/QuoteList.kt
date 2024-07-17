@@ -18,9 +18,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-@Preview(showBackground = true)
 @Composable
-fun QuoteList(){
+fun QuoteList(quotesList: Array<QuoteModel>, onListItemClicked: (quoteModel: QuoteModel) -> Unit) {
     Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxSize(1f)) {
         Text(text = "Quotes App",
             fontSize = 22.sp,
@@ -28,8 +27,8 @@ fun QuoteList(){
             modifier = Modifier.padding(16.dp)
         )
         LazyColumn(userScrollEnabled = true, state = rememberLazyListState()) {
-            items(20) {
-                QuoteListItem("quote", "sufiyan")
+            items(quotesList.size) {
+                QuoteListItem(quotesList[it], onListItemClicked)
             }
         }
     }
